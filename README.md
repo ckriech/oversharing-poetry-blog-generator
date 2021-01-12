@@ -1,5 +1,7 @@
 # Oversharing Poetry Blog Generator
 
+a very unfinished attempt at a blog generator
+
 ## Who made this
 
 Me (Chris Kriech)
