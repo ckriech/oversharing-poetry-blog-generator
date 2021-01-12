@@ -23,10 +23,14 @@ spellings = {
     'dmg': 'damage'
 }
 
+#returns the most common capitalizations of the words (defaults to first instance for matching counts)
+#Map of (w.lower() -> most common)
 def capitalizations(text):
+    #split anything that's not 0-9, a-z, A-ZZ
     words = re.split("[^0-9a-zA-Z']", text)
     counts = defaultdict(Counter)
     for w in words:
+        # word -> counts[w.lower -> [w -> count]]
         counts[w.lower()][w] += 1
     return {w:counts[w].most_common(1)[0][0] for w in counts}
 
@@ -34,8 +38,8 @@ def capitalizations(text):
 def tokenize(text):
     caps = capitalizations(text)
     text = text.lower()
-    text = re.sub(r'\bmt\.', 'mount', text)
-    text = re.sub(r'(mrs?)\.', r'\1', text)
+    text = re.sub(r'\bmt\.', 'mount', text) #?
+    text = re.sub(r'(mrs?)\.', r'\1', text) #??
     text = re.sub(r"[^0-9a-z\s.!\?\!']", " ", text)
     text = re.sub(r"\b[0-9]+(th|nd|rd)?", lambda x: numbers.get(x, " "), text)
     tokens = [x.split() for x in re.split(r"\n\n|[\.\?!]", text)]
@@ -56,5 +60,6 @@ def interleave(*args):
 
 
 def load(filename):
-    return tokenize(open(filename).read())
+    with open(filename, 'r') as f:
+        return tokenize(f.read())
     

@@ -27,8 +27,14 @@ parser.add_argument('inputfile', type=str)
 meter_dict={'sonnet': oisin.sonnet, 'petrarch': oisin.petrarch, 'ottava': oisin.ottava, 'limerick': oisin.limerick, 'couplet': oisin.couplet, 'ballad': oisin.ballad, 'verse': oisin.verse, 'blank': oisin.blank}
 
 # required, optional
-def get_tokens(inputfile, tokenlimit):
+def get_tokens_from_file(inputfile, tokenlimit):
     tokens = oisin.load(inputfile)
+    if (tokenlimit != None):
+        tokens = tokens[:tokenlimit]
+    return tokens
+
+def get_tokens(content, tokenlimit):
+    tokens = oisin.corpus.tokenize(content)
     if (tokenlimit != None):
         tokens = tokens[:tokenlimit]
     return tokens
