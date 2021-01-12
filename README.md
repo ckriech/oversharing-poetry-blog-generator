@@ -1,6 +1,6 @@
 # Oversharing Poetry Blog Generator
 
-a very unfinished attempt at a blog generator
+a very unfinished attempt at a blog generator for [proc jam 2020](https://www.procjam.com/)
 
 ## Who made this
 
